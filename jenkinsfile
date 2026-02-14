@@ -39,7 +39,6 @@ pipeline {
                                 error "Deployment is Failure, Rollback Failure. Application is not running"
                             }
                         }
-
                     }
                 }
             }
@@ -53,7 +52,7 @@ pipeline {
                             kubectl get nodes
                             kubectl apply -f 01-namespace.yaml
                             sed -i "s/IMAGE_VERSION/${params.appVersion}/g" values-${params.deploy_to}.yaml
-                            helm upgrade --install $COMPONENT -f values-${params.deploy_to}.yaml -n $PROJECT .
+                            #helm upgrade --install $COMPONENT -f values-${params.deploy_to}.yaml -n $PROJECT .
                             kubectl apply -f application.yaml
                         """
                     }
@@ -97,7 +96,7 @@ pipeline {
                 }
             }
         }
-
+    }
     post { 
         always { 
             echo 'I will always say Hello again!'
@@ -110,3 +109,4 @@ pipeline {
             echo 'Hello failure'
         }
     }
+}
