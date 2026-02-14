@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: namespaces
+  name: catalogue
   namespace: argocd # Namespace where the Argo CD Application resource lives
 spec:
   project: default # The Argo CD Project this application belongs to
   source:
-    chart: catalogue
     repoURL: https://github.com/Rameshdevsecops089/catalogue-cd.git
     targetRevision: main
+    path: .
     helm:
       releaseName: catalogue
       valueFiles:
